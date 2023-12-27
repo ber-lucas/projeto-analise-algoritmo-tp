@@ -30,9 +30,21 @@ int ag(int dist[], int n, int k)
 
     trav_distance[first] = 1;
 
+    /* Escolha gulosa: escolhe os k-1 planetas restantes. */
+    for (int i = 1; i < k; i++) {
+        int best = -1;
+
+        /* Escolhe o planeta mais distante do último planeta escolhido. */
+        for (int j = 0; j < n; j++) {
+            if (!trav_distance[j] &&
+                (best == -1 || dist[j] - dist[last] > dist[best] - dist[last]))
+                best = j;
+        }
+
+        trav_distance[best] = 1;
+        last = best;
+    }
+
     free(trav_distance);
     return max_subdistance;
-
-    /*Still*/
-    
 }
