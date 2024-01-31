@@ -4,6 +4,16 @@
 #include "util.h"
 #include "fb.h"
 
+/*
+  Algoritmo de Força Bruta
+    O objetivo deste algoritmo é minimizar a subdistância de maior custo na
+    solução final.
+    Ele seleciona todas as possíveis combinações de k planetas e calcula a
+    subdistância entre cada par em cada combinação, comparando a subdistância
+    encontrada com a maior subdistância até o momento. Ao final a subdistáncia
+    de maior custo é escolhida como solução final, garantindo que a solução
+    encontrada minimize a subdistância de maior custo.
+*/
 int fb(int *distance, int n, int k) {
   int greaterSubdistance = INT_MAX;
   int currentDistance = 0;
@@ -45,10 +55,15 @@ int fb(int *distance, int n, int k) {
         iter++;
       }
 
+      if(greaterSubdistance > intermediateSubdistancia) {
+        greaterSubdistance = intermediateSubdistancia;
+      }
+
       free(subdistanceTemp);
     }
   } while(currentDistance != 0);
 
+  free(subdistance);
 
   return greaterSubdistance;
 }

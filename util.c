@@ -3,6 +3,7 @@
 #include <time.h>
 #include "util.h"
 
+// Função para calcular o custo de ir de um planeta a outro
 int calculatesTheCostOfTheSubdistance(
   int planet1, int planet2, int subdistance[]
 ) {
@@ -14,4 +15,3 @@ int calculatesTheCostOfTheSubdistance(
 
   return cost;
 }
-
