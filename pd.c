@@ -19,6 +19,22 @@ int pd(int dist[], int n, int k) {
     memo[i][0] = calculatesTheCostOfTheSubdistance(0, i, dist);
   }
 
+  int *travDistance = (int *) calloc(n, sizeof(int));
+  int last = n - 1;
+  int first = 0;
+  for (int i = 1; i < k; i++) {
+    int best = -1;
+
+    for (int j = 0; j < n; j++) {
+      if (!travDistance[j] &&
+        (best == -1 || dist[j] - dist[last] > dist[best] - dist[last]))
+        best = j;
+    }
+
+    travDistance[best] = 1;
+    last = best;
+  }
+
   return 0;
 }
 
