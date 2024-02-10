@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int calculatesTheCostOfTheSubdistance(
-  int planet1, int planet2, int subdistance[]
-);
-
-int smallerThan(int x, int y);
-
-int biggerThan(int x, int y);
+#include <limits.h>
+#include "util.h"
+#include "pd.h"
 
 /*
   Algoritmo de Programação Dinâmica
@@ -16,10 +11,10 @@ int biggerThan(int x, int y);
     resultados é utilizada para calcular a solução ótima para este problema.
 */
 int pd(int dist[], int n, int k) {
-
+  
   int memo[n + 1][k + 1];
   for (int i = 0; i <= n; i++) {
-    for(int j = 0; j <= k; j++) {
+    for (int j = 0; j <= k; j++) {
       memo[i][j] = -1;
     }
   }
@@ -52,27 +47,22 @@ int pd(int dist[], int n, int k) {
     }
   }
 
-  return 0;
-}
-
-int calculatesTheCostOfTheSubdistance(
-  int planet1, int planet2, int subdistance[]
-) {
-  int cost = 0;
-
-  for(int i = planet1; i < planet2; i++) {
-    cost += subdistance[i];
+  /* Calcula a solução ótima */
+  for (int j = 1; j <= k; j++) {
+    for (int i = j; i <= n; i++) {
+      if (j == 1) {
+        memo[i][j] = calculatesTheCostOfTheSubdistance(first, i, dist);
+      } else {
+        memo[i][j] = INT_MAX;
+        for (int x = j - 2; x < i; x++) {
+          int cost = calculatesTheCostOfTheSubdistance(x, i, dist);
+          memo[i][j] = smallerThan(memo[i][j], biggerThan(memo[x][j - 1], cost));
+        }
+      }
+    }
   }
 
-  return cost;
-}
+  free(travDistance);
 
-// Função para comparar dois números e retornar o menor
-int smallerThan(int x, int y) {
-  return (x < y) ? x : y;
-}
-
-// Função para comparar dois números e retornar o maior
-int biggerThan(int x, int y) {
-  return (x > y) ? x : y;
+  return memo[n][k];
 }
