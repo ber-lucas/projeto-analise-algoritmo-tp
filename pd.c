@@ -6,6 +6,8 @@
 
 /*
   Algoritmo de Programação Dinâmica
+    Autores: Bernardo e Breno
+  
     Neste algoritmo utilizamos a heurística utilizada no Algoritmo Guloso para
     selecionar os k-1 planetas restantes, e então a matriz que armazena estes
     resultados é utilizada para calcular a solução ótima para este problema.

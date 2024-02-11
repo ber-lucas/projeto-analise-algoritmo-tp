@@ -4,6 +4,8 @@
 
 /*
   Algoritmo Guloso
+    Autores: Melissa e Diego
+  
     A ideia deste algoritmo é escolher um planeta inicial que maximize a 
     distância para o próximo planeta escolhido, e em seguida escolher o planeta 
     que maximize a distância para o último planeta escolhido. Desta forma, para

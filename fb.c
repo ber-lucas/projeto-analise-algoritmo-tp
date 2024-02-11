@@ -6,6 +6,8 @@
 
 /*
   Algoritmo de Força Bruta
+    Autores: Álvaro e Jhonatan
+    
     O objetivo deste algoritmo é minimizar a subdistância de maior custo na
     solução final.
     Ele seleciona todas as possíveis combinações de k planetas e calcula a
